@@ -12,12 +12,6 @@ namespace ForexSignals.AuthServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            services.AddIdentityServer()
-                .AddTemporarySigningCredential()
-                .AddTestUsers(Config.GetUsers())
-                .AddInMemoryIdentityResources(Config.GetIdentityReferences())
-                .AddInMemoryClients(Config.GetClients());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,11 +24,6 @@ namespace ForexSignals.AuthServer
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseIdentityServer();
-
-            app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
         }
     }
 }
