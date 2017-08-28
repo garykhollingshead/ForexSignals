@@ -1,0 +1,70 @@
+<div class="container">
+  <h3> Login</h3>
+
+  <div class="row loginForm">
+
+    <div class="main-login main-center">
+      <form class="form-horizontal" [formGroup]="form" (ngSubmit)="login()" autocomplete="off">
+
+        <div class="form-group loginName">
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+              <input type="text"
+                     placeholder="Username"
+                     formControlName="loginName"
+                     (ngModel)="user.name"
+                     [class.errors]="username.hasError('*', ['dirty'])">
+            </div>
+            <div ngxErrors="loginName" #loginName="ngxErrors">
+              <div class="error" ngxError="required" [when]="['dirty','touched']">
+                Username is required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="class=form-group loginPass">
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+              <input type="text"
+                     formControlName="loginPassword"
+                     (ngModel)="user.password"
+                     placeholder="Password"
+                     [class.errors]="loginPassword.hasError('*', ['dirty'])">
+            </div>
+            <div ngxErrors="loginPassword" #loginPassword="ngxErrors">
+              <div class="error" ngxError="required" [when]="['dirty', 'touched']">
+                Password is required
+              </div>
+
+
+              <div [ngxError]="['minlength','maxlength']" [when]="['dirty', 'touched']">
+                6 characters minimum, 20 characters maximum
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-group ">
+          <div class="button small-6 large-4 columns">
+            <!--<button class="btn btn-primary">Clear</button>-->
+            <input type="submit" class="button expanded" value="Clear" [disabled]="!form.valid">
+          </div>
+          <div class="button small-6 large-4 columns">
+            <input type="submit" class="button expanded" value="Login" [disabled]="!form.valid">
+            <!--<button class="btn btn-primary">Login</button>-->
+          </div>
+        </div>
+
+
+        <div class="login-register">
+          <a routerLink='/register'>Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
