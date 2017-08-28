@@ -3,7 +3,43 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:400,700');
 @import "~font-awesome/css/font-awesome.css";
 
-body {
-  background: #e8e8e8;
-  font-family: 'Muli';
+
+
+body, html {
+    height: 100%;
+    background-repeat: no-repeat;
+    background: #007991; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#007991, #78ffd6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#007991, #78ffd6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#007991, #78ffd6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#007991, #78ffd6); /* Standard syntax (must be last) */
+    font-family: 'Oxygen', sans-serif;
+}
+
+.button {
+    background-color: #007991;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    display: block;
+}
+
+// Mixin itself
+@mixin clearfix() {
+    &::after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+}
+
+// Usage as a mixin
+.element {
+    @include clearfix;
 }

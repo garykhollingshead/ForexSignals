@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { UserModel } from '../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -8,24 +9,41 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  public form: FormGroup;
-  public user: any = {};
-  public loginName: string;
-  public loginPassword: string;
+  public user: UserModel;
+  public loginForm: FormGroup;
+  public username: FormControl;
+  public password: FormControl;
 
   constructor(
-    private fb: FormBuilder
-    //private authService: AuthService,
-    //private store: Store<AppState>
-  ) {}
+      private fb: FormBuilder
+      //private authService: AuthService,
+      //private store: Store<AppState>
+  ) {
+      this.user = new UserModel;
 
-  ngOnInit() {
-    this.form = this.fb.group({
-      loginName: [null, [Validators.required]],
-      loginPassword: [null, [Validators.required], [Validators.minLength(6)], [Validators.maxLength(20)]]
-    });
   }
 
+  ngOnInit() {
+      this.createFormControls();
+      this.createForm();
+
+      //this.form = this.fb.group({
+    //  loginName: ['', [Validators.required]],
+    //  loginPassword: ['', [Validators.required], [Validators.minLength(6)], [Validators.maxLength(20)]]
+    //});
+  }
+
+    private createFormControls() {
+            this.username = new FormControl('', Validators.required),
+            this.password = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)])
+    }
+
+    private createForm() {
+        this.loginForm = new FormGroup({
+                username: this.username,
+                password: this.password
+        });
+    }
 
 
     public login() {

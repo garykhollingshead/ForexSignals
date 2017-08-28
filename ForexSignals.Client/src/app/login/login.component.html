@@ -1,70 +1,70 @@
 <div class="container">
-  <h3> Login</h3>
+    <div class="row main loginForm">
+        <div class="main-login main-center">
+            <h3> Login</h3>
+            <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
 
-  <div class="row loginForm">
+                <div class="form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input type="text"
+                                   placeholder="Username"
+                                   formControlName="username"
+                                   (ngModel)="user.username" />
+                        </div>
 
-    <div class="main-login main-center">
-      <form class="form-horizontal" [formGroup]="form" (ngSubmit)="login()" autocomplete="off">
 
-        <div class="form-group loginName">
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-              <input type="text"
-                     placeholder="Username"
-                     formControlName="loginName"
-                     (ngModel)="user.name"
-                     [class.errors]="username.hasError('*', ['dirty'])">
-            </div>
-            <div ngxErrors="loginName" #loginName="ngxErrors">
-              <div class="error" ngxError="required" [when]="['dirty','touched']">
-                Username is required
-              </div>
-            </div>
-          </div>
+                        <div class="form-group" [ngClass]="{
+                                    'has-danger': username.invalid && username.dirty,
+                                    'has-success': username.valid && username.dirty
+                                    }">
+                            <div class="alert alert-danger"
+                                 *ngIf="username.invalid && username.dirty">
+                                Username is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="class=form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="text"
+                                   formControlName="password"
+                                   (ngModel)="user.password"
+                                   placeholder="Password">
+                        </div>
+
+                        <div class="alert alert-danger" 
+                             *ngIf="password.errors && (password.dirty || password.touched)"> 
+                            <p *ngIf="password.errors.required">Password is required</p>
+                            <p *ngIf="password.errors.minlength">Password must be 6 characters long</p>
+                            <p *ngIf="password.errors.maxlength">Password must be maximum 20 characters long</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+
+                <div class="buttons">
+                    <div class="button small-6 large-4 clear">
+                        <input type="reset" class="button clear" value="Reset"/>
+                        <!--<button class="btn ">Clear</button>-->
+                    </div>
+                    <div class="button small-6 large-4 login">
+                        <input type="submit" class="button login" value="Login"/>
+                        <!--<button class="btn " [disabled]="!form.valid">Login</button>-->
+                    </div>
+                    <span class="stretch"></span>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="login-register">
+                    <a routerLink='/register'>Register Here</a>
+                </div>
+            </form>
         </div>
-
-        <div class="class=form-group loginPass">
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-              <input type="text"
-                     formControlName="loginPassword"
-                     (ngModel)="user.password"
-                     placeholder="Password"
-                     [class.errors]="loginPassword.hasError('*', ['dirty'])">
-            </div>
-            <div ngxErrors="loginPassword" #loginPassword="ngxErrors">
-              <div class="error" ngxError="required" [when]="['dirty', 'touched']">
-                Password is required
-              </div>
-
-
-              <div [ngxError]="['minlength','maxlength']" [when]="['dirty', 'touched']">
-                6 characters minimum, 20 characters maximum
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="form-group ">
-          <div class="button small-6 large-4 columns">
-            <!--<button class="btn btn-primary">Clear</button>-->
-            <input type="submit" class="button expanded" value="Clear" [disabled]="!form.valid">
-          </div>
-          <div class="button small-6 large-4 columns">
-            <input type="submit" class="button expanded" value="Login" [disabled]="!form.valid">
-            <!--<button class="btn btn-primary">Login</button>-->
-          </div>
-        </div>
-
-
-        <div class="login-register">
-          <a routerLink='/register'>Register</a>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
