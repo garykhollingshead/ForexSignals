@@ -1,0 +1,161 @@
+<div class="container">
+    <div class="row main loginForm">
+        <div class="main-login main-center">
+            <h3> Register for an account</h3>
+            <form class="form-horizontal" [formGroup]="signupForm" (ngSubmit)="signup()" autocomplete="off">
+
+
+<!--First name section-->
+                <div class="form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                            <input type="text"
+                                   placeholder="First Name"
+                                   formControlName="firstName"
+                                   (ngModel)="firstName" />
+                        </div>
+
+                        <div class="alert alert-danger"
+                             *ngIf="firstName.errors && (firstName?.touched || firstName?.errors.dirty)">
+                            <p *ngIf="firstName?.errors.required">First name is required</p>
+                            </div>
+                    </div>
+                </div>
+
+<!--Last name section-->
+                <div class="class=form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                            <input type="text"
+                                   formControlName="lastName"
+                                   (ngModel)="lastName"
+                                   placeholder="Last name">
+                        </div>
+
+                        <div class="alert alert-danger"
+                             *ngIf="lastName?.errors && (lastName?.touched || lastName?.dirty)">
+                            <p *ngIf="lastName?.errors.required">Last Name is required</p>
+                        </div>
+                    </div>
+                </div>
+
+<!--Email address section-->
+                <div class="class=form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa-md" aria-hidden="true"></i></span>
+                            <input type="email"
+                                   formControlName="email"
+                                   (ngModel)="email"
+                                   placeholder="Email address"
+                                   email
+                                   validateEmail>
+                        </div>
+
+                        <div class="alert alert-danger"
+                             *ngIf="email?.errors && (email?.dirty || email?.touched)">
+                            <p *ngIf="email?.errors.required">Email address is required</p>
+                            <p *ngIf="email?.errors.validateEmail">Email is not in a valid form</p>
+                        </div>
+                    </div>
+                </div>
+
+
+<!--Username address section-->
+                <div class="class=form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                            <input type="text"
+                                   formControlName="username"
+                                   (ngModel)="username"
+                                   placeholder="Desired username">
+                        </div>
+
+                        <div class="alert alert-danger"
+                             *ngIf="username?.errors && (username?.dirty || username?.touched)">
+                            <p *ngIf="username?.errors.required">Username is required</p>
+                        </div>
+                    </div>
+                </div>
+
+
+<!--Password section-->
+                <div class="class=form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="text"
+                                   formControlName="password"
+                                   (ngModel)="password"
+                                   placeholder="Password">
+                        </div>
+
+                        <div class="alert alert-danger"
+                             *ngIf="password?.errors && (password?.dirty || password?.touched)">
+                            <p *ngIf="password?.errors.required">Password is required</p>
+                            <p *ngIf="password?.errors.minlength">Password must be 6 characters long</p>
+                            <p *ngIf="password?.errors.maxlength">Password must be maximum 20 characters long</p>
+                        </div>
+                    </div>
+                </div>
+
+<!--Password confirmation section-->
+                <div class="class=form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="text"
+                                   (ngModel)="passwordConfirmation"
+                                   placeholder="Password confirmation">
+                        </div>
+
+                        <div class="alert alert-danger"
+                             *ngIf="errorCode === 2">
+                            <p >Your password and password confirmation did not match</p>/p>
+                        </div>
+                    </div>
+                </div>
+
+<!--Terms agreement section-->
+                <div class="class=form-group">
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <input type="checkbox"
+                                   formControlName="termsAgreement"
+                                   (ngModel)="termsAgrement">
+                        </div>
+                        <p>I agree to FrxSignal terms and conditions.</p>
+
+                        <div class="alert alert-danger"
+                             *ngIf="termsAgreement?.errors && (termsAgrement?.dirty || termsAgrement?.touched)">
+                            <p *ngIf="termsAgreement?.errors.required">Password confirmation is required</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+<!--Buttons section-->
+                <div class="buttons">
+                    <div class="button small-6 large-4 clear">
+                        <input type="reset" class="button clear" value="Reset" />
+                        <!--<button class="btn ">Clear</button>-->
+                    </div>
+                    <div class="button small-6 large-4 login">
+                        <input type="submit" class="button login" value="Sign up" />
+                        <!--<button class="btn " [disabled]="!form.valid">Login</button>-->
+                    </div>
+                    <span class="stretch"></span>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="login-register">
+                    <a routerLink='/login'>Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

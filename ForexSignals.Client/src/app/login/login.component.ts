@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { UserModel } from '../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +8,6 @@ import { UserModel } from '../../models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  public user: UserModel;
   public loginForm: FormGroup;
   public username: FormControl;
   public password: FormControl;
@@ -18,10 +16,7 @@ export class LoginComponent implements OnInit {
       private fb: FormBuilder
       //private authService: AuthService,
       //private store: Store<AppState>
-  ) {
-      this.user = new UserModel;
-
-  }
+  ) {}
 
   ngOnInit() {
       this.createFormControls();
