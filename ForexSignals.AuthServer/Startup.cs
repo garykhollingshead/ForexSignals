@@ -17,7 +17,7 @@ namespace ForexSignals.AuthServer
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("AppSettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
             var configuration = builder.Build();
 

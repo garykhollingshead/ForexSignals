@@ -1,8 +1,6 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ForexSignals.Data.Configuration;
 using ForexSignals.Data.Models;
-using ForexSignals.Data.Persistance;
 using ForexSignals.Data.Requests;
 using ForexSignals.Data.Responses;
 using ForexSignals.DataAccess.Adapters;

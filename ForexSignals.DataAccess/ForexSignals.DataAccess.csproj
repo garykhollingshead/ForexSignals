@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Flakey" Version="1.0.12" />
     <PackageReference Include="Marten" Version="2.2.0" />
   </ItemGroup>
 

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ForexSignals.Data.Configuration;
+using ForexSignals.Data.Models;
 using ForexSignals.Data.Persistance;
+using ForexSignals.DataAccess.IdGenerators;
 using Marten;
 using Npgsql;
 
@@ -28,6 +30,8 @@ namespace ForexSignals.DataAccess.Adapters
         private void Configure(StoreOptions storeOptions)
         {
             storeOptions.Connection(GetNpgsqlConnectionString(_settings.Database));
+
+            storeOptions.Schema.For<User>().IdStrategy(new CustomdIdGeneration());
         }
 
         private string GetNpgsqlConnectionString(string database = "postgres")
@@ -179,11 +183,11 @@ namespace ForexSignals.DataAccess.Adapters
             return things;
         }
 
-        public T QueryFirstOrDefault<T>(Expression<Func<T, bool>> query) where T : ModelWithIdentity
+        public async Task<T> QueryFirstOrDefaultAsync<T>(Expression<Func<T, bool>> query) where T : ModelWithIdentity
         {
             using (var session = DocumentStore.QuerySession())
             {
-                return session.Query<T>().Where(query).FirstOrDefault();
+                return await session.Query<T>().Where(query).FirstOrDefaultAsync();
             }
         }
 
