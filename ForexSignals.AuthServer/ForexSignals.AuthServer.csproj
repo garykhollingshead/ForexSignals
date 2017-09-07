@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ForexSignals.DataAccess\ForexSignals.DataAccess.csproj" />
     <ProjectReference Include="..\ForexSignals.Data\ForexSignals.Data.csproj" />
   </ItemGroup>
 
