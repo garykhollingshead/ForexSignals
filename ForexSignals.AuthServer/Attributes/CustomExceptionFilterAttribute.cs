@@ -18,6 +18,9 @@ namespace ForexSignals.AuthServer.Attributes
                 case DuplicateUserException duplicateUserException:
                     context.Result = new BadRequestObjectResult(duplicateUserException.Message);
                     break;
+                case InvalidLoginException invalidLoginException:
+                    context.Result = new UnauthorizedResult();
+                    break;
                 default:
                     context.Result = new StatusCodeResult(500);
                     break;

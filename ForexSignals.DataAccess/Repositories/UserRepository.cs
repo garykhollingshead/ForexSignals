@@ -19,6 +19,11 @@ namespace ForexSignals.DataAccess.Repositories
             return await _adapter.GetByIdAsync<User>(id);
         }
 
+        public async Task<User> GetUserByUsernameAsync(string username)
+        {
+            return await _adapter.QueryFirstOrDefaultAsync<User>(u => u.Username == username);
+        }
+
         public async Task<User> SaveUserAsync(User user)
         {
             var checkDuplicateUser = await _adapter.QueryFirstOrDefaultAsync<User>(u => u.Username == user.Username);
